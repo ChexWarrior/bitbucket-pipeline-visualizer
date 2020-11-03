@@ -5,9 +5,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
-define('OAUTH_KEY', 'u8XF8hMJLJuyKbdmX2');
-define('OAUTH_SECRET', 'c5tAAjVnChxBt9jupsdsQ9dT6MhNMEzm');
-
 require __DIR__ . '/../vendor/autoload.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../src/templates');
