@@ -12,6 +12,7 @@
         "guzzlehttp/psr7": "^1.7",
         "http-interop/http-factory-guzzle": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "slim/psr7": "^1.2"
     }
 }
