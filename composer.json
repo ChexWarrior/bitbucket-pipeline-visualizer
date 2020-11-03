@@ -7,5 +7,10 @@
             "email": "aplehm@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "slim/slim": "4.*",
+        "guzzlehttp/psr7": "^1.7",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "guzzlehttp/guzzle": "^7.2"
+    }
 }
