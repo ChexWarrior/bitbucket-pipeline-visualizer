@@ -1,0 +1,12 @@
+<form
+  id="repositories">
+  {% for repo in repos %}
+    <input
+      name="{{repo.name}}"
+      id="{{repo.name}}"
+      type="checkbox"
+      value="{{repo.name}}"/>
+    <label for="{{repo.name}}">{{repo.name}}</label>
+  {% endfor %}
+  <input type="submit" value="Submit"/>
+</form>
