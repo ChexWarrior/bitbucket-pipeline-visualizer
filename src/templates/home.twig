@@ -3,5 +3,28 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-<h1>HELLO WORLD!</h1>
+  <div>
+    <div class="credentials-container">
+      <form
+        id="credentials"
+        method="GET"
+        action="/repositories"
+        hx-boost="true"
+        hx-target=".repo-container"
+      >
+        <fieldset>
+          <legend>Enter your Bitbucket Credentials</legend>
+          <label for="username">Username</label>
+          <input type="text" name="username" required />
+          <br>
+          <label for="password">Password</label>
+          <input type="password" name="password" required />
+          <br>
+          <label for="workspace">Workspace</label>
+          <input type="text" name="workspace" required />
+        </fieldset>
+      </form>
+    </div>
+    <div class="repo-container"></div>
+  </div>
 {% endblock %}
