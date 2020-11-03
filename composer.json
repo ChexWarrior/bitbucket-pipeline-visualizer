@@ -1,0 +1,11 @@
+{
+    "name": "andy/htmx-bitbucket-pipelines",
+    "description": "Bitbucket Pipeline Monitor",
+    "authors": [
+        {
+            "name": "Andrew Lehman",
+            "email": "aplehm@gmail.com"
+        }
+    ],
+    "require": {}
+}
