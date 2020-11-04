@@ -3,30 +3,29 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-  <div>
-    <div class="credentials-container">
-      <form
-        id="credentials"
-        method="GET"
-        action="/repositories"
-        hx-boost="true"
-        hx-target=".repo-container"
-      >
-        <fieldset>
-          <legend>Enter your Bitbucket Credentials</legend>
-          <label for="username">Username</label>
-          <input type="text" name="username" required />
-          <br>
-          <label for="password">Password</label>
-          <input type="password" name="password" required />
-          <br>
-          <label for="workspace">Workspace</label>
-          <input type="text" name="workspace" required />
-          <br>
-          <input type="submit" value="Submit"/>
-        </fieldset>
-      </form>
-    </div>
-    <div class="repo-container"></div>
-  </div>
+  <main>
+    <section>
+      <div class="credentials-container">
+        <form
+          id="credentials"
+          method="GET"
+          action="/repositories"
+          hx-boost="true"
+          hx-target=".repo-container"
+        >
+          <fieldset>
+            <legend>Enter your Bitbucket Credentials</legend>
+            <label for="username">Username</label>
+            <input type="text" name="username" required />
+            <label for="password">Password</label>
+            <input type="password" name="password" required />
+            <label for="workspace">Workspace</label>
+            <input type="text" name="workspace" required />
+            <input type="submit" value="Submit"/>
+          </fieldset>
+        </form>
+      </div>
+      <div class="repo-container"></div>
+    </section>
+  </main>
 {% endblock %}
