@@ -8,3 +8,7 @@ fieldset {
   align-items: flex-start;
   justify-content: space-around;
 }
+
+fieldset div {
+  margin: 5px 0 5px 0;
+}
