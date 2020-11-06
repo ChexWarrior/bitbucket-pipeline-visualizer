@@ -20,10 +20,10 @@ $app->get('/', function (Request $request, Response $response, $args) use ($twig
 $app->get('/repositories', function (Request $request, Response $response, $args) use ($twig) {
     $params = $request->getQueryParams();
     $bitbucket = new Bitbucket($params['username'], $params['password']);
-    $repoJson = $bitbucket->getRepositories($params['workspace']);
+    $repositories = $bitbucket->getRepositories($params['workspace']);
     $body = $response->getBody();
     $body->write($twig->render('repositories.twig', [
-        'repos' => $repoJson['values'],
+        'repos' => $repositories,
     ]));
 
     return $response;

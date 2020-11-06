@@ -23,9 +23,16 @@ class Bitbucket
 
 
     public function getRepositories(string $workspace): array
-    {
-        $response = $this->client->get(self::BASE_PREFIX . "/repositories/$workspace?fields=values.name,next");
-        // TODO: Handle page length and grabbing all pages
-        return json_decode($response->getBody()->getContents(), true);
+    {   $repos = [];
+        $url = self::BASE_PREFIX . "/repositories/$workspace?pagelen=100&fields=values.name,next";
+
+        do {
+            $response = $this->client->get($url);
+            $json = json_decode($response->getBody()->getContents(), true);
+            $repos = array_merge($repos, $json['values']);
+            $url = !empty($json['next']) ? $json['next'] : null;
+        } while ($url);
+
+        return $repos;
     }
 }
