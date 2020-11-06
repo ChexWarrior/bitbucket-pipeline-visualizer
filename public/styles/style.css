@@ -1,14 +1,28 @@
-section {
+main {
   display: flex;
 }
 
-fieldset {
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset, .repo-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
 }
 
+.repo-list {
+  height: 300px;
+  overflow-y: auto;
+}
+
 fieldset div {
   margin: 5px 0 5px 0;
+}
+
+.repo-list div {
+  margin: 0;
 }

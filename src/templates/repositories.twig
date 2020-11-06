@@ -2,6 +2,7 @@
   id="repositories">
   <fieldset>
     <legend>Repositories</legend>
+    <div class="repo-list">
     {% for repo in repos %}
       <div>
         <input
@@ -12,6 +13,7 @@
         <label for="{{repo.name}}">{{repo.name}}</label>
       </div>
     {% endfor %}
+    </div>
     <input type="submit" value="Submit"/>
   </fieldset>
 </form>
