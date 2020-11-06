@@ -6,11 +6,11 @@
     {% for repo in repos %}
       <div>
         <input
-          name="{{repo.name}}"
-          id="{{repo.name}}"
+          name="{{repo}}"
+          id="{{repo}}"
           type="checkbox"
-          value="{{repo.name}}"/>
-        <label for="{{repo.name}}">{{repo.name}}</label>
+          value="{{repo}}"/>
+        <label for="{{repo}}">{{repo}}</label>
       </div>
     {% endfor %}
     </div>

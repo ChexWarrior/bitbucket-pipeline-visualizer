@@ -21,6 +21,7 @@ $app->get('/repositories', function (Request $request, Response $response, $args
     $params = $request->getQueryParams();
     $bitbucket = new Bitbucket($params['username'], $params['password']);
     $repositories = $bitbucket->getRepositories($params['workspace']);
+    $repositories = $bitbucket->filterRepositoriesWithPipelines($params['workspace'], $repositories);
     $body = $response->getBody();
     $body->write($twig->render('repositories.twig', [
         'repos' => $repositories,

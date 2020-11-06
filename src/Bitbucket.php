@@ -3,6 +3,11 @@
 namespace Chexwarrior;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Pool;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 class Bitbucket
 {
@@ -23,7 +28,8 @@ class Bitbucket
 
 
     public function getRepositories(string $workspace): array
-    {   $repos = [];
+    {
+        $repos = [];
         $url = self::BASE_PREFIX . "/repositories/$workspace?pagelen=100&fields=values.name,next";
 
         do {
@@ -32,6 +38,28 @@ class Bitbucket
             $repos = array_merge($repos, $json['values']);
             $url = !empty($json['next']) ? $json['next'] : null;
         } while ($url);
+
+        return $repos;
+    }
+
+    public function filterRepositoriesWithPipelines(string $workspace, array $repositories): array {
+        $repos = [];
+        $promises = [];
+
+        foreach($repositories as $r) {
+            $name = $r['name'];
+            $promises[$name] = $this->client->getAsync(
+                self::BASE_PREFIX . "/repositories/$workspace/$name/pipelines_config"
+            );
+        }
+
+        $responses = Promise\Utils::settle($promises)->wait();
+
+        foreach ($responses as $key => $res) {
+            if ($res['state'] === 'fulfilled') {
+                $repos[] = $key;
+            }
+        }
 
         return $repos;
     }
