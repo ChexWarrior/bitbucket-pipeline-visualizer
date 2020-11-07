@@ -3,45 +3,42 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-  <section id="notifications"></section>
-  <main>
-    <section class="controls">
-      <div class="credentials-container">
-        <form
-          id="credentials"
-          method="GET"
-          action="/repositories"
-          hx-boost="true"
-          hx-target=".repo-container"
-        >
-          <fieldset>
-            <legend>Enter your Bitbucket Credentials</legend>
-            <div>
-              <label for="username">Username</label>
-              <br>
-              <input type="text" name="username" required />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <br>
-              <input type="password" name="password" required />
-            </div>
-            <div>
-              <label for="workspace">Workspace</label>
-              <br>
-              <input type="text" name="workspace" required />
-            </div>
-            <div>
-              <button type="submit">
-                Submit
-              </button>
-              <i class="htmx-indicator fas fa-sync-alt fa-spin"></i>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="repo-container"></div>
-    </section>
-    <section class="pipelines"></section>
-  </main>
+  <section class="controls">
+    <div class="credentials-container">
+      <form
+        id="credentials"
+        method="GET"
+        action="/repositories"
+        hx-boost="true"
+        hx-target=".repo-container"
+      >
+        <fieldset>
+          <legend>Enter your Bitbucket Credentials</legend>
+          <div>
+            <label for="username">Username</label>
+            <br>
+            <input type="text" name="username" required />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" name="password" required />
+          </div>
+          <div>
+            <label for="workspace">Workspace</label>
+            <br>
+            <input type="text" name="workspace" required />
+          </div>
+          <div>
+            <button type="submit">
+              Submit
+            </button>
+            <i class="htmx-indicator fas fa-sync-alt fa-spin"></i>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="repo-container"></div>
+  </section>
+  <section class="pipelines"></section>
 {% endblock %}
