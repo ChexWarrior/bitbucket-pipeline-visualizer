@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-pro": "file:../../fortawesome-fontawesome-pro-5.15.1.tgz",
     "htmx.org": "^0.3.0"
   }
 }
