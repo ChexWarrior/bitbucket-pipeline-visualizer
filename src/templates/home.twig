@@ -11,7 +11,7 @@
           method="GET"
           action="/repositories"
           hx-boost="true"
-          hx-target=".repo-container"
+          hx-target="#repo-container"
         >
           <fieldset>
             <legend>Enter your Bitbucket Credentials</legend>
@@ -34,10 +34,45 @@
           </fieldset>
         </form>
       </div>
-      <div class="repo-container"></div>
+      <div id="repo-container"></div>
     </section>
     <section class="pipelines">
 
     </section>
   </main>
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script>
+    function storeHTML(key, sourceElement) {
+      let temp = sourceElement.innerHTML;
+      window.localStorage.setItem(key, temp);
+    }
+
+    function setHTML(key, targetElement) {
+      let temp = window.localStorage.getItem(key);
+
+      if (temp) {
+        targetElement.innerHTML = temp;
+
+        return true;
+      }
+
+      return false;
+    }
+
+    const credentialsForm = document.querySelector('#credentials');
+    credentialsForm.addEventListener('htmx:beforeRequest', function(evt) {
+        if(setHTML('repos', document.querySelector('#repo-container'))) {
+          evt.detail.xhr.abort();
+        }
+    });
+
+    const repoContainer = document.querySelector('#repo-container');
+    repoContainer.addEventListener('htmx:afterSettle', function(evt) {
+      storeHTML('repos', evt.detail.elt);
+    });
+
+  </script>
 {% endblock %}
