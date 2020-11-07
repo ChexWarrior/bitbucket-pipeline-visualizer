@@ -19,13 +19,22 @@ $app->get('/', function (Request $request, Response $response, $args) use ($twig
 
 $app->get('/repositories', function (Request $request, Response $response, $args) use ($twig) {
     $params = $request->getQueryParams();
-    $bitbucket = new Bitbucket($params['username'], $params['password']);
-    $repositories = $bitbucket->getRepositories($params['workspace']);
-    $repositories = $bitbucket->filterRepositoriesWithPipelines($params['workspace'], $repositories);
     $body = $response->getBody();
-    $body->write($twig->render('repositories.twig', [
-        'repos' => $repositories,
-    ]));
+    $bitbucket = new Bitbucket($params['username'], $params['password']);
+
+    try {
+        $repositories = $bitbucket->getRepositories($params['workspace']);
+        $repositories = $bitbucket->filterRepositoriesWithPipelines($params['workspace'], $repositories);
+        $body->write($twig->render('repositories.twig', [
+            'repos' => $repositories,
+        ]));
+    } catch (Exception $e) {
+        $body->write($twig->render('error.twig', [
+            'message' => 'There was an error communicating with the Bitbucket API, please double check your credentials',
+        ]));
+    }
+
+
 
     return $response;
 });
