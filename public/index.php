@@ -39,4 +39,16 @@ $app->get('/repositories', function (Request $request, Response $response, $args
     return $response;
 });
 
+$app->get('/pipelines', function (Request $request, Response $response, $args) use ($twig) {
+    $params = $request->getQueryParams();
+    $body = $response->getBody();
+
+    // Test HTML for now
+    $body->write($twig->render('pipelines.twig', [
+        'amount' => range(0, count($params) - 1),
+    ]));
+
+    return $response;
+});
+
 $app->run();
