@@ -22,3 +22,33 @@ fieldset, .repo-list {
 fieldset div {
   margin: 5px 0 5px 0;
 }
+
+.pipelines {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.pipeline-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  border: 1px solid grey;
+  margin: 2px;
+  padding: 5px;
+}
+
+.pipeline-steps {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.pipeline-steps div {
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid grey;
+}
