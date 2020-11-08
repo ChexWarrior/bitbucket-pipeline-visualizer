@@ -40,5 +40,22 @@
     </div>
     <div class="repo-container"></div>
   </section>
-  <section class="pipelines"></section>
+  <section class="pipelines">
+    {% for i in 0..7 %}
+        <div class="pipeline-info">
+          <span>Test Pipeline {{ i }}</span>
+          <div class="pipeline-steps hidden">
+            {% for j in 1..random(2, 5) %}
+              <div>Step {{j}}</div>
+            {% endfor %}
+          </div>
+        </div>
+
+    {% endfor %}
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="scripts/main.js"></script>
 {% endblock %}
