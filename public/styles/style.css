@@ -56,3 +56,21 @@ fieldset div {
   margin: 3px;
   border: 1px solid grey;
 }
+
+/** Pipeline Status Colors **/
+.in-progress {
+  background-color: white;
+}
+
+.none {
+  background-color: grey;
+}
+
+.successful {
+  background-color: green;
+}
+
+.failed,
+.stopped {
+  background-color: red;
+}
