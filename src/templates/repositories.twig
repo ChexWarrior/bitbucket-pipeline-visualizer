@@ -1,5 +1,7 @@
 {% include "error.twig" %}
 <form
+  hx-get="/pipelines"
+  hx-target="section.pipelines"
   id="repositories">
   <fieldset>
     <legend>Repositories</legend>
