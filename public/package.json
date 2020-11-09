@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-pro": "file:../../fortawesome-fontawesome-pro-5.15.1.tgz",
+    "bulma": "^0.9.1",
     "htmx.org": "^0.3.0"
   }
 }
