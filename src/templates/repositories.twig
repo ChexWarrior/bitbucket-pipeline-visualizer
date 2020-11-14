@@ -1,22 +1,24 @@
-<form
-  hx-get="/pipelines"
-  hx-target="section.pipelines"
-  id="repositories">
-    <h2 class="is-size-4">Repositories</h2>
-    <div class="repo-list box">
-    {% for repo in repos %}
-      <div class="field">
-        <label for="{{repo}}">
-          <input
-            name="{{repo}}"
-            id="{{repo}}"
-            type="checkbox"
-            value="{{repo}}"/>
-            {{repo}}
-        </label>
+<div class="repo-container columns box">
+  <form
+    hx-get="/pipelines"
+    hx-target="section.pipelines"
+    id="repositories">
+      <h2 class="is-size-4">Repositories</h2>
+      <div class="repo-list box">
+      {% for repo in repos %}
+        <div class="field">
+          <label for="{{repo}}">
+            <input
+              name="{{repo}}"
+              id="{{repo}}"
+              type="checkbox"
+              value="{{repo}}"/>
+              {{repo}}
+          </label>
+        </div>
+      {% endfor %}
       </div>
-    {% endfor %}
-    </div>
-    <button class="is-link button" type="submit">Submit</button>
-  </fieldset>
-</form>
+      <button class="is-link button" type="submit">Submit</button>
+    </fieldset>
+  </form>
+</div>

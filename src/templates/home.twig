@@ -11,6 +11,7 @@
           method="GET"
           action="/repositories"
           hx-boost="true"
+          hx-swap="outerHTML"
           hx-target=".repo-container">
           <h2 class="is-size-4">Bitbucket Credentials</h2>
           <div class="field">
@@ -39,7 +40,7 @@
           </div>
         </form>
       </div>
-      <div class="repo-container columns box"></div>
+      <div class="hidden repo-container columns box"></div>
     </section>
     <section class="column is-two-thirds pipelines">
       {% for i in 0..7 %}

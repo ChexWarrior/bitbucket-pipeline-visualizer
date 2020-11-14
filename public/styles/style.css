@@ -1,8 +1,11 @@
-body {
+html {
   /** Bitbucket Blue **/
   background-color: #0747a6;
 }
 
+.hidden {
+  visibility: hidden;
+}
 
 .repo-container {
   height: 500px;
