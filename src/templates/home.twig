@@ -5,7 +5,7 @@
 {% block content %}
   <section class="columns is-variable is-8 homepage">
     <section class="column controls">
-      <div class="credentials-container columns">
+      <div class="credentials-container columns box">
         <form
           id="credentials"
           method="GET"
@@ -39,7 +39,7 @@
           </div>
         </form>
       </div>
-      <div class="repo-container columns"></div>
+      <div class="repo-container columns box"></div>
     </section>
     <section class="column is-two-thirds pipelines">
       {% for i in 0..7 %}

@@ -1,10 +1,9 @@
-{% include "error.twig" %}
 <form
   hx-get="/pipelines"
   hx-target="section.pipelines"
   id="repositories">
     <h2 class="is-size-4">Repositories</h2>
-    <div class="repo-list">
+    <div class="repo-list box">
     {% for repo in repos %}
       <div class="field">
         <label for="{{repo}}">

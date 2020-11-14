@@ -1,3 +1,9 @@
+body {
+  /** Bitbucket Blue **/
+  background-color: #0747a6;
+}
+
+
 .repo-container {
   height: 500px;
   margin-top: 20px;
@@ -9,5 +15,6 @@
 
 .repo-list {
   overflow: auto;
-  height: 500px;
+  height: 350px;
+  border: 1px solid grey;
 }
