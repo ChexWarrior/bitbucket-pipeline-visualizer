@@ -1,7 +1,13 @@
-{% include "error.twig" %}
-
-{% for i in amount %}
-  <div class="pipeline-info">
-    TEST {{ i }}
+{# TESTING ONLY  #}
+{% for i in 0..7 %}
+  <div class="pipeline-info column">
+    <div class="box">
+      <span>Test Pipeline {{ i }}</span>
+      <div class="pipeline-steps hidden">
+        {% for j in 1..random(2, 5) %}
+          <div>Step {{j}}</div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 {% endfor %}

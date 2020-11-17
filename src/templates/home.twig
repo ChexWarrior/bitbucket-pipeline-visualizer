@@ -42,18 +42,8 @@
       </div>
       <div class="hidden repo-container columns box"></div>
     </section>
-    <section class="column is-two-thirds pipelines">
-      {% for i in 0..7 %}
-          <div class="pipeline-info">
-            <span>Test Pipeline {{ i }}</span>
-            <div class="pipeline-steps hidden">
-              {% for j in 1..random(2, 5) %}
-                <div>Step {{j}}</div>
-              {% endfor %}
-            </div>
-          </div>
-
-      {% endfor %}
+    <section class="column is-two-thirds">
+      <div class="pipelines columns is-multiline"></div>
     </section>
   </section>
 {% endblock %}
