@@ -1,6 +1,7 @@
 <?php
 
 use Chexwarrior\Bitbucket;
+use Chexwarrior\FakeBitbucket;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -20,11 +21,13 @@ $app->get('/', function (Request $request, Response $response, $args) use ($twig
 $app->get('/repositories', function (Request $request, Response $response, $args) use ($twig) {
     $params = $request->getQueryParams();
     $body = $response->getBody();
-    $bitbucket = new Bitbucket($params['username'], $params['password']);
+    //$bitbucket = new Bitbucket($params['username'], $params['password']);
+    $bitbucket = new FakeBitbucket();
 
     try {
-        $repositories = $bitbucket->getRepositories($params['workspace']);
-        $repositories = $bitbucket->filterRepositoriesWithPipelines($params['workspace'], $repositories);
+        $repositories = $bitbucket->getRepositories();
+        //$repositories = $bitbucket->getRepositories($params['workspace']);
+        // $repositories = $bitbucket->filterRepositoriesWithPipelines($params['workspace'], $repositories);
         $body->write($twig->render('repositories.twig', [
             'repos' => $repositories,
         ]));
@@ -42,10 +45,10 @@ $app->get('/repositories', function (Request $request, Response $response, $args
 $app->get('/pipelines', function (Request $request, Response $response, $args) use ($twig) {
     $params = $request->getQueryParams();
     $body = $response->getBody();
-
-    // Test HTML for now
+    $bitbucket = new FakeBitbucket();
+    $pipelines = $bitbucket->getPipelines();
     $body->write($twig->render('pipelines.twig', [
-        'amount' => range(0, count($params) - 1),
+        'pipelines' => $pipelines,
     ]));
 
     return $response;

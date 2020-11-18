@@ -1,11 +1,11 @@
 {# TESTING ONLY  #}
-{% for i in 0..7 %}
+{% for pipeline in pipelines %}
   <div class="pipeline-info column is-one-third">
     <div class="box">
-      <span class="title is-5">Test Pipeline {{ i }}</span>
+      <span class="title is-5">{{pipeline.repository}} #{{ pipeline.number }}</span>
       <div class="pipeline-steps is-hidden">
-        {% for j in 1..random(2, 5) %}
-          <div>Step {{j}}</div>
+        {% for step in pipeline.steps %}
+          <div>Step {{step.name}}</div>
         {% endfor %}
       </div>
     </div>
