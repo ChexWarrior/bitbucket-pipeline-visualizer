@@ -3,10 +3,6 @@ html {
   background-color: #0747a6;
 }
 
-.hidden {
-  visibility: hidden;
-}
-
 .repo-container {
   height: 500px;
   margin-top: 20px;
