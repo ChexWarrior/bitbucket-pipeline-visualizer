@@ -21,3 +21,19 @@ html {
 .pipeline-info {
   cursor: pointer;
 }
+
+.pipeline-steps {
+  transition: max-height 0.25s, opacity 0.25s;
+}
+
+.inactive {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.active {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+}

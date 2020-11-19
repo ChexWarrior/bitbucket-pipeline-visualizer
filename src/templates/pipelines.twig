@@ -3,7 +3,7 @@
   <div class="pipeline-info column is-one-third">
     <div class="box">
       <span class="title is-5">{{pipeline.repository}} #{{ pipeline.number }}</span>
-      <div class="pipeline-steps is-hidden">
+      <div class="pipeline-steps inactive">
         {% for step in pipeline.steps %}
           <div>Step {{step.name}}</div>
         {% endfor %}
