@@ -24,12 +24,20 @@ class FakeBitbucket
 
     public function getPipelines(): array
     {
+        $statuses = [
+            'SUCCESS',
+            'FAILED',
+            'CANCELED',
+            'IN PROGRESS',
+        ];
+
         $pipelines = [];
         $amt = $this->faker->numberBetween(5, 10);
         for ($i = 0; $i < $amt; $i += 1) {
             $pipelineInfo = [
                 'repository' => $this->faker->word,
                 'number' => $this->faker->numberBetween(1, 500),
+                'status' => $statuses[array_rand($statuses)],
             ];
 
             $stepAmt = $this->faker->numberBetween(1, 10);
