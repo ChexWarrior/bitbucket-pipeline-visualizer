@@ -10,10 +10,24 @@
   {% endif %}
 {% endmacro %}
 
+{% macro setStatusIcon(status) %}
+  {% if status == 'IN PROGRESS' %}
+    <i class="fas fa-sync-alt fa-spin"></i>
+  {% elseif status == 'CANCELED' %}
+    <i class="fas fa-ban"></i>
+  {% elseif status == 'FAILED' %}
+    <i class="fas fa-times-circle"></i>
+  {% elseif status == 'SUCCESS' %}
+    <i class="fas fa-check"></i>
+  {% endif %}
+{% endmacro %}
+
 {% for pipeline in pipelines %}
   <div class="pipeline-info column is-one-third">
     <div class="box {{ _self.setStatusClass(pipeline.status) }}">
-      <span class="title has-text-white is-size-5">{{pipeline.repository}} #{{ pipeline.build_number }}</span>
+      <span class="title has-text-white is-size-5">{{pipeline.repository}} #{{ pipeline.build_number }}&nbsp;
+        {{ _self.setStatusIcon(pipeline.status) }}
+      </span>
       <div class="pipeline-steps inactive">
         <br>
         {% for step in pipeline.steps %}
