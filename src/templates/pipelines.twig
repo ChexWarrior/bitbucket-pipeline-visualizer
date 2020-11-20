@@ -1,12 +1,12 @@
 {% macro setStatusClass(status) %}
   {% if status == 'IN PROGRESS' %}
-    has-background-warning
+    has-background-info
   {% elseif status == 'CANCELED' %}
     has-background-grey-light
   {% elseif status == 'FAILED' %}
-    has-background-danger
+    has-background-danger-dark
   {% elseif status == 'SUCCESS' %}
-    has-background-success
+    has-background-success-dark
   {% endif %}
 {% endmacro %}
 
@@ -17,7 +17,7 @@
       <span class="title has-text-white is-5">{{pipeline.repository}} #{{ pipeline.number }}</span>
       <div class="pipeline-steps inactive">
         {% for step in pipeline.steps %}
-          <div>Step {{step.name}}</div>
+          <div class="box">Step {{step.name}}</div>
         {% endfor %}
       </div>
     </div>
