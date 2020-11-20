@@ -36,7 +36,7 @@ class FakeBitbucket
         for ($i = 0; $i < $amt; $i += 1) {
             $pipelineInfo = [
                 'repository' => $this->faker->word,
-                'number' => $this->faker->numberBetween(1, 500),
+                'build_number' => $this->faker->numberBetween(1, 500),
                 'status' => $statuses[array_rand($statuses)],
             ];
 

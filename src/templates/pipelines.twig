@@ -10,14 +10,14 @@
   {% endif %}
 {% endmacro %}
 
-
 {% for pipeline in pipelines %}
   <div class="pipeline-info column is-one-third">
     <div class="box {{ _self.setStatusClass(pipeline.status) }}">
-      <span class="title has-text-white is-5">{{pipeline.repository}} #{{ pipeline.number }}</span>
+      <span class="title has-text-white is-size-5">{{pipeline.repository}} #{{ pipeline.build_number }}</span>
       <div class="pipeline-steps inactive">
+        <br>
         {% for step in pipeline.steps %}
-          <div class="box">Step {{step.name}}</div>
+          <div class="box title is-size-6">{{step.name}}</div>
         {% endfor %}
       </div>
     </div>
