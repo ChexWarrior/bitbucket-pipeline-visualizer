@@ -25,14 +25,17 @@ class FakeBitbucket
     public function getPipelines(): array
     {
         $pipelineStatuses = [
+            // Completed
             'SUCCESS',
             'FAILED',
             'EXPIRED',
             'ERROR',
-            'CANCELED',
-            'IN PROGRESS',
-            'PENDING',
+            'STOPPED',
+            // In Progress
+            'RUNNING',
             'PAUSED',
+            // Other but counting as In Progress
+            'PENDING',
         ];
 
         $pipelines = [];
@@ -67,15 +70,17 @@ class FakeBitbucket
     {
         $stepStatus = '';
         $statuses = [
+            // Completed
             'ERROR',
             'FAILED',
             'SUCCESSFUL',
             'EXPIRED',
             'STOPPED',
             'NOT RUN',
+            // In Progress
             'PENDING',
             'READY',
-            'IN PROGRESS',
+            'RUNNING',
         ];
 
         /**
@@ -85,8 +90,8 @@ class FakeBitbucket
          * EXPIRED we know that one of the steps has a status of EXPIRED and that all steps after have a status of NOT RUN
          * ERROR we know that one of the steps has a status of ERROR and that all steps after have a status of NOT RUN
          * STOPPED we know that one of the steps has a status of STOPPED and that all steps after have a status of NOT RUN
-         * IN PROGRESS we know that the previous steps must be SUCCESSFUL and one of the steps must have a status of IN PROGRESS and the steps afterwards have a status of NOT RUN
-         * PAUSED we know that the previous steps must be SUCCESSFUL and one of the steps must have a status of IN PROGRESS and the steps afterwards have a status of NOT RUN
+         * RUNNING we know that the previous steps must be SUCCESSFUL and one of the steps must have a status of RUNNING and the steps afterwards have a status of NOT RUN
+         * PAUSED we know that the previous steps must be SUCCESSFUL and one of the steps must have a status of RUNNING and the steps afterwards have a status of NOT RUN
          * PENDING we know that previous steps must be SUCCESSFUL and one of the steps must have a status of PENDING and the steps aftewards have a status of NOT RUN
          */
 
@@ -108,14 +113,14 @@ class FakeBitbucket
             if ($isFinalStep && $stepStatus === 'SUCCESSFUL') {
                 $stepStatus = $pipelineStatus;
             }
-        } else if ($pipelineStatus === 'IN PROGRESS' || $pipelineStatus === 'PENDING' ||
+        } else if ($pipelineStatus === 'RUNNING' || $pipelineStatus === 'PENDING' ||
             $pipelineStatus === 'PAUSED') {
             $validStepStatuses = ['SUCCESSFUL', $pipelineStatus];
-            // If this is the first step or the previous step has a status of SUCCESSFUL this step could either be SUCCESSFUL or IN PROGRESS
+            // If this is the first step or the previous step has a status of SUCCESSFUL this step could either be SUCCESSFUL or RUNNING
             if ($previousStep === null || $previousStep['status'] === 'SUCCESSFUL') {
                 $stepStatus = $validStepStatuses[array_rand($validStepStatuses)];
             }
-            // If the previous step has a status of IN PROGRESS than this step has a status of PENDING
+            // If the previous step has a status of RUNNING than this step has a status of PENDING
             else if ($previousStep === $pipelineStatus) {
                 $stepStatus = 'PENDING';
             }

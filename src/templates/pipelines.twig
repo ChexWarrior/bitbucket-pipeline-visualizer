@@ -1,9 +1,9 @@
 {% macro setStatusClass(status) %}
-  {% if status == 'IN PROGRESS' %}
+  {% if status == 'RUNNING' or status == 'PAUSED' or status == 'PENDING' %}
     has-background-info
-  {% elseif status == 'CANCELED' %}
+  {% elseif status == 'STOPPED' %}
     has-background-grey-light
-  {% elseif status == 'FAILED' %}
+  {% elseif status == 'FAILED' or status == 'ERROR' or status == 'EXPIRED' %}
     has-background-danger-dark
   {% elseif status == 'SUCCESS' %}
     has-background-success-dark
@@ -11,9 +11,9 @@
 {% endmacro %}
 
 {% macro setStatusIcon(status) %}
-  {% if status == 'IN PROGRESS' %}
+  {% if status == 'RUNNING' or status == 'PAUSED' or status == 'PENDING' %}
     <i class="fas fa-sync-alt fa-spin"></i>
-  {% elseif status == 'CANCELED' or status == 'FAILED' %}
+  {% elseif status == 'STOPPED' or status == 'FAILED' or status == 'ERROR' or status == 'EXPIRED' %}
     <i class="fas fa-times-circle"></i>
   {% elseif status == 'SUCCESS' %}
     <i class="fas fa-check"></i>
