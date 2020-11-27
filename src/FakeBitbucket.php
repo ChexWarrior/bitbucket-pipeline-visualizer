@@ -92,7 +92,8 @@ class FakeBitbucket
 
         if ($pipelineStatus === 'SUCCESSFUL') {
             $stepStatus = 'SUCCESSFUL';
-        } else if ($pipelineStatus === 'FAILED' || $pipelineStatus === 'EXPIRED' || $pipelineStatus === 'ERROR' || $pipelineStatus === 'STOPPED') {
+        } else if ($pipelineStatus === 'FAILED' || $pipelineStatus === 'EXPIRED' ||
+            $pipelineStatus === 'ERROR' || $pipelineStatus === 'STOPPED') {
             $validStepStatuses = ['SUCCESSFUL', $pipelineStatus];
             // If this step is the first step or the previous step was SUCCESSFUL this step could either be SUCCESSFUL or FAILED/EXPIRED/ERROR/STOPPED
             if ($previousStep === null || $previousStep['status'] === 'SUCCESSFUL') {
@@ -107,7 +108,8 @@ class FakeBitbucket
             if ($isFinalStep && $stepStatus === 'SUCCESSFUL') {
                 $stepStatus = $pipelineStatus;
             }
-        } else if ($pipelineStatus === 'IN PROGRESS') {
+        } else if ($pipelineStatus === 'IN PROGRESS' || $pipelineStatus === 'PENDING' ||
+            $pipelineStatus === 'PAUSED') {
             $validStepStatuses = ['SUCCESSFUL', $pipelineStatus];
             // If this is the first step or the previous step has a status of SUCCESSFUL this step could either be SUCCESSFUL or IN PROGRESS
             if ($previousStep === null || $previousStep['status'] === 'SUCCESSFUL') {
