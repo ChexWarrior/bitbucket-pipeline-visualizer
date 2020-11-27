@@ -51,7 +51,7 @@ class FakeBitbucket
             $stepAmt = $this->faker->numberBetween(1, 10);
             $stepInfo = [];
             for ($j = 0; $j < $stepAmt; $j += 1) {
-                $previousStep = ($j - 1 >= 0) ? $stepInfo[$j] : null;
+                $previousStep = ($j - 1 > 0) ? $stepInfo[$j - 1] : null;
                 $isFinalStep = $j + 1 === $stepAmt;
                 $stepInfo[] = [
                     'name' => $this->faker->word,
